@@ -16,17 +16,32 @@ public class StudentService {
     public String registerStudent(Student student){
         String toEmail = student.getEmail();
         String message1 = "hi"+student.getFirstName()+"Thank you for registration,Please confirm your email.";
-        String link ="work on it later";
+
+
+        student.setRegistrationConfirmation(false);
+        this.studentRepository.save(student);
+
+
+
+
+        String link ="http://localhost:8082/"+"confirm/"+student.getStudentId();
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("rokibulhasan295@gmail.com");
         message.setTo(toEmail);
         message.setSubject("mail for confirmation regarding your registration for learning academy");
-        message.setText(message1);
+        message.setText(message1+link);
         this.mailSender.send(message);
-        this.studentRepository.save(student);
+
         return "registration mail sent";
 
 
     }
 
+    public String confirmRegistration(Integer myid) {
+        Student studentData = this.studentRepository.findById(myid).get();
+
+        studentData.setRegistrationConfirmation(true);
+        this.studentRepository.save(studentData);
+        return "thank you for your confirmation";
+    }
 }
