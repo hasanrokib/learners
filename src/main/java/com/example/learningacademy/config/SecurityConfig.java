@@ -9,8 +9,7 @@
 //@CrossOrigin("*")
 //
 //public class SecurityConfig {
-//
-//    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+//   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
 //        httpSecurity.csrf(csrf->csrf.disable())
 //                .cors(cors->cors.disable())
 //                .authorizeHttpRequests(auth->auth.requestMatchers("/login/**").authenticated()
